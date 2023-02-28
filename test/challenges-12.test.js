@@ -23,7 +23,7 @@ describe("Challenge12-01", () => {
 });
 
 describe("Challenge12-02", () => {
-  test.skip("cvsFiltration", () => {
+  test("cvsFiltration", () => {
     let cvs1 = [
       {
         firstName: "Jason",

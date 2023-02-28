@@ -75,18 +75,23 @@ const oddFiltration = (arr) => {
 //  1- Full name is first name + last name
 //  2- If one of the names is null dont add it to the full name
 
+
 const cvsFiltration = (arr) => {
-     let edit = arr.map((item)=>{
-           item.fullName = `${item.firstName} ${item.LastName}`        
+
+    let newCv = arr.filter(n => {
+        if (n.yearsOfExperience > 4 && n.tech =="JS") {
+          return true;
+    }   
+ } )
+     
+
+  let edit = newCv.map((item)=>{
+         item.fullName = `${item.firstName} ${item.LastName}`   
+         return {fullName:item.fullName,tech:item.tech}     
        });
-         return edit;
-//     let newCv = arr.filter(n => {
-//         if (n.yearsOfExperience > 4 && n.tech =="JS") {
-//           return true;
-//     }   
-//  } )
-//       newCv.fullname = `${newCv.firstName} ${newCv.LastName}`
-//       return newCv
+       return edit;
+        
+ 
 }
 // -------------------------------------------------------------------------------------------------------
 
