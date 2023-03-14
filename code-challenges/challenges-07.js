@@ -90,10 +90,14 @@ const objLat = (obj) => {
 
 const cvFormatter = (arr) => {
     let newArr = [];
-    let fullName = `${arr.firstName} ${arr.lastName}`;
-    for(let i =0 ; i< arr.length ; i++){
+    for(let i =0 ; i<arr.length ; i++){
+       if(arr[i].lastName == null){
+        arr[i].fullName = `${arr[i].firstName}` ;
+       }else{
+        arr[i].fullName = `${arr[i].firstName} ${arr[i].lastName}`;
+       }
    if(arr[i].yearsOfExperience>1){
-    newArr.push(fullName , arr.tech );
+    newArr.push({fullName :arr[i].fullName, tech: arr[i].tech});
    }
 }
 return newArr;
@@ -122,8 +126,42 @@ return newArr;
 //  1- rejectedApplicants are applications that has both the names empty or null and whoever have one year or less of Experience
 
 const applicationsStatics = (arr) => {
-    // write your code here
+    let result = {
+             python_devs: 0,
+             javaScript_devs: 0,
+             dotNet_devs: 0,
+             java_devs: 0,
+             totalApplicants: 0,
+             rejectedApplicants: 0,
+         }
+    let newArr = [];
+    for(let i =0 ; i<arr.length ; i++){
+    //    if(arr[i].lastName == null){
+    //     arr[i].fullName = `${arr[i].firstName}` ;
+    //    }else{
+         arr[i].fullName = `${arr[i].firstName} ${arr[i].lastName}`;
+    //    }
+
+    
+     
+   if(arr[i].yearsOfExperience >1 &&  arr[i].fullName !== " "  ){
+    if(arr[i].tech == "Python"){
+        result.python_devs +=1
+     }else if(arr[i].tech == "JS"){
+        result.javaScript_devs +=1
+     }else if(arr[i].tech == "Java"){
+        result.java_devs +=1
+     }else if(arr[i].tech == ".Net"){
+        result.dotNet_devs +=1
+     }
+   }else{
+    result.rejectedApplicants += 1
+   }
+   
 };
+   result.totalApplicants = arr.length
+   return result;
+}
 // -------------------------------------------------------------------------------------------------------
 
 // -------------------------------------------------------------------------------------------------------
